@@ -1,0 +1,11 @@
+# from;to;time;transport;cost;seat;info
+
+Barcelona;Gerona Airport;230;flight;300;R3; some info
+New York JFK;Barcelona;34;moto;450; no info; -
+Gerona Airport;Stockholm;80;flight SK455;300;15A;info
+Stockholm;New York JFK;210;car; 400;No seat assignment;-
+Madrid;Barcelona;30;train;230;45A;info
+Barcelona;Stockholm;130;flight FT450;200;No seat assignment;info
+Stockholm;Barcelona;125;flight FT451;200;D51;back flight
+New York JFK;Madrid;450;train;RRX12;120;No;-
+Madrid;Gerona Airport;70;flight A190;230;25A;info

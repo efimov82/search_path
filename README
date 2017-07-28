@@ -1,0 +1,10 @@
+Testing project to search journey path from start point to end point
+
+File with data: ./listCards.txt
+Format file: 'from;to;time;transport;cost;seat;info'
+
+Usage: php ./index.php 'Barcelona' 'New York JFK'
+
+where first param - start point of journey
+second param - end point of journey
+
