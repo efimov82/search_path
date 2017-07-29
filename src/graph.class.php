@@ -29,8 +29,7 @@ class Graph {
     $q->enqueue($origin);
     $this->visited[$origin] = true;
 
-    // это требуется для записи обратного пути от каждого узла
-    $path          = [];
+    $path = [];
     $path[$origin] = new \SplDoublyLinkedList();
     $path[$origin]->setIteratorMode(
       \SplDoublyLinkedList::IT_MODE_FIFO | \SplDoublyLinkedList::IT_MODE_KEEP
@@ -39,18 +38,20 @@ class Graph {
     $path[$origin]->push($origin);
     while (!$q->isEmpty() && $q->bottom() != $destination) {
       $t = $q->dequeue();
-      if (!empty($this->graph[$t])) {
-        // для каждого соседнего узла
-        foreach ($this->graph[$t] as $vertex) {
+      if (empty($this->graph[$t]))
+        break;
 
-          if (isset($this->visited[$vertex]) && !$this->visited[$vertex]) {
-            // если все еще не посещен, то добавим в очередь и отметим
-            $q->enqueue($vertex);
-            $this->visited[$vertex] = true;
-            // добавим узел к текущему пути
-            $path[$vertex]          = clone $path[$t];
-            $path[$vertex]->push($vertex);
-          }
+      foreach ($this->graph[$t] as $vertex) {
+        if (!isset($this->visited[$vertex])) { // Fix for vertex don't have childs in graph
+          $this->visited[$vertex] = false;
+        }
+
+        if (!$this->visited[$vertex]) {
+          $q->enqueue($vertex);
+          $this->visited[$vertex] = true;
+
+          $path[$vertex] = clone $path[$t];
+          $path[$vertex]->push($vertex);
         }
       }
     }

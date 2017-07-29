@@ -95,8 +95,6 @@ function printResults($start, $finish, $arr_paths) {
 
   }
 
-  //if (!count($arr_paths))
-
 }
 
 
