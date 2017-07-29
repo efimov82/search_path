@@ -62,6 +62,14 @@ class Graph {
     }
   }
 
+  /**
+   * Additional search for find variants $origin_path
+   *
+   * @param string $origin
+   * @param string $destination
+   * @param array $origin_path
+   * @return array parths array | empty array
+   */
   public function searchOtherPaths($origin, $destination, $origin_path) {
     $res = [];
     foreach ($origin_path as $vertex) {
