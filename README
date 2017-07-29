@@ -4,7 +4,7 @@ Description task: Search Shortest path in an unweighted oriented graph
 File with data: ./listCards.txt
 Format file: 'from;to;time;transport;cost;seat;info'
 
-Usage: php ./index.php 'Barcelona' 'New York JFK'
+Usage: php ./index.php 'New York JFK' 'Stockholm'
 
 where first param - start point of journey
 second param - end point of journey
