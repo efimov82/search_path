@@ -7,13 +7,26 @@ namespace src;
 
 
 /**
- * Create final Result from path and data from input file
+ * Create final Result from paths and data from input file
  *
- * @param array $path
+ * @param array $arr_paths [A, B,..,F] array vertex from start to finish
  * @param array $data
  * @return array [from, to, transport, seat, info, cost, time]
  */
-function createResult($path, $data) {
+function createResult($arr_paths, $data) {
+  $res = [];
+  foreach ($arr_paths as $num=>$path) {
+    $res[] = _createPathResult($path, $data);
+  }
+  return $res;
+}
+
+/*
+ * @param array path [A, B,..,F] array vertex from start to finish
+ * @param array $data
+ * @return array [from, to, transport, seat, info, cost, time]
+ */
+function _createPathResult($path, $data) {
   $res        = [];
   $from       = '';
   $infos      = $data['info'];
@@ -71,19 +84,34 @@ function createData($filename) {
  * @param string $finish
  * @param array $data
  */
-function printResults($start, $finish, $data) {
+function printResults($start, $finish, $arr_paths) {
   echo("\nDetails your journey from '$start' to '$finish': \n");
+  foreach($arr_paths as $num=>$path) {
+    if ($path) {
+      echo("Variant #$num \n");
+      printDetailPath($path);
+    } else
+      echo('No way');
+
+  }
+
+  //if (!count($arr_paths))
+
+}
+
+
+function printDetailPath($path_data) {
   $total_cost = 0;
   $total_time = 0;
-  foreach ($data as $num => $arr) {
+  foreach ($path_data as $num => $arr) {
     echo "#{$num}: Take " . $arr['transport'] . " from '" . $arr['from'] . '" to "' . $arr['to'] . '". Seat: ' . $arr['seat'] . ' , Additional info:' . $arr['info'] . "\n";
     $total_cost += (int) $arr['cost'];
     $total_time += (int) $arr['time'];
   }
   echo "Total cost: $total_cost$ \n";
-  echo "Time in road: $total_time min \n\n";
+  echo "Time in road: $total_time min \n";
+  echo "----------------------------------\n";
 }
-
 
 function printRawResults($result) {
   echo("Raw results: \n");

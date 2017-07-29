@@ -8,6 +8,11 @@
  * @data 28.07.2017
  *
  * Usage: php ./index.php 'Barcelona' 'New York JFK'
+ *
+ * Version 1.2
+ *
+ * added find alternative paths from A to B
+ *
  */
 include './src/graph.class.php';
 include './src/functions.php';
@@ -27,14 +32,15 @@ if (!$start || !$finish)
 
 $graph = new Graph($data['paths']);
 
-$path   = $graph->searchPath($start, $finish);
-$result = \src\createResult($path, $data);
-if (!$result)
-  die('No find path from ' . $start . ' to ' . $finish . "\n");
+$path = $graph->searchPath($start, $finish);
+$arr_paths = $graph->searchOtherPaths($start, $finish, $path);
+$arr_paths[] = $path;
+$result = \src\createResult($arr_paths, $data);
 
-\src\printResults($start, $finish, $result);
+if (!$path) // first path empty
+  echo("No find path from '$start' to '$finish' \n");
+else
+  \src\printResults($start, $finish, $result);
 
-// debug
-//\src\printRawResults($result);
 
 exit(1);
