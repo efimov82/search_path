@@ -1,8 +1,10 @@
-Testing project to search journey path from start point to end point
+Testing project to search journey path from start point to end point.
+
 Description task: Search Shortest path in an unweighted oriented graph
 
-File with data: ./listCards.txt
-Format file: 
+File with data: ./listCards.txt. 
+
+Format: 
 ```
 'from;to;time;transport;cost;seat;info'
 ```
