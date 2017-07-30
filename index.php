@@ -34,6 +34,7 @@ $graph = new Graph($data['paths']);
 
 $path = $graph->searchPath($start, $finish);
 $arr_paths = $graph->searchOtherPaths($start, $finish, $path);
+
 $arr_paths[] = $path;
 $result = \src\createResult($arr_paths, $data);
 

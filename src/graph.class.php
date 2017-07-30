@@ -8,7 +8,6 @@ namespace src;
 class Graph {
 
   protected $graph;
-  protected $visited = array();
 
   public function __construct($graph) {
     $this->graph = $graph;
@@ -21,15 +20,16 @@ class Graph {
    * @return array
    */
   public function searchPath($origin, $destination, $exclude_vertexs = []) {
+    $visited = [];
     foreach ($this->graph as $vertex => $adj) {
-      $this->visited[$vertex] = array_key_exists($vertex, array_flip($exclude_vertexs));
+      $visited[$vertex] = array_key_exists($vertex, array_flip($exclude_vertexs));
     }
 
-    $q = new \SplQueue();
+    $q                = new \SplQueue();
     $q->enqueue($origin);
-    $this->visited[$origin] = true;
+    $visited[$origin] = true;
 
-    $path = [];
+    $path          = [];
     $path[$origin] = new \SplDoublyLinkedList();
     $path[$origin]->setIteratorMode(
       \SplDoublyLinkedList::IT_MODE_FIFO | \SplDoublyLinkedList::IT_MODE_KEEP
@@ -42,19 +42,21 @@ class Graph {
         break;
 
       foreach ($this->graph[$t] as $vertex) {
-        if (!isset($this->visited[$vertex])) { // Fix for vertex don't have childs in graph
-          $this->visited[$vertex] = false;
+        if (!isset($visited[$vertex])) { // Fix for vertex don't have childs in graph
+          $visited[$vertex] = false;
         }
 
-        if (!$this->visited[$vertex]) {
+        if (!$visited[$vertex]) {
           $q->enqueue($vertex);
-          $this->visited[$vertex] = true;
+          $visited[$vertex] = true;
 
           $path[$vertex] = clone $path[$t];
           $path[$vertex]->push($vertex);
         }
       }
     }
+
+    //print_r($path);
 
     if (isset($path[$destination])) {
       return $path[$destination];
@@ -69,7 +71,7 @@ class Graph {
    * @param string $origin
    * @param string $destination
    * @param array $origin_path
-   * @return array parths array | empty array
+   * @return array paths array | empty array
    */
   public function searchOtherPaths($origin, $destination, $origin_path) {
     $res = [];
@@ -78,11 +80,27 @@ class Graph {
       if (($vertex != $origin) && ($vertex != $destination))
         $path = $this->searchPath($origin, $destination, [$vertex]);
 
-      if (count($path))
+      if (count($path) && !$this->_isPathExist($path, $res))
         $res[] = $path;
     }
 
     return $res;
+  }
+
+  /**
+   *
+   * @param SplDoublyLinkedList $search_path
+   * @param SplDoublyLinkedList[] $arr_paths
+   * @return boolean
+   */
+  protected function _isPathExist($search_path, $arr_paths) {
+    //return false;
+    foreach ($arr_paths as $path) {
+      if ($path == $search_path)
+        return true;
+    }
+
+    return false;
   }
 
 }

@@ -10,19 +10,3 @@ Stockholm;Barcelona;125;flight FT451;200;D51;back flight
 New York JFK;Madrid;450;train;RRX12;120;No;-
 Madrid;Gerona Airport;70;flight A190;230;25A;info
 
-A;B;20;flight;10;R3; some info
-A;D;20;train;14;R5;-
-
-B;C;20;flight;17;E78;-
-B;F;30;flight;12;W3;-
-
-C;D;20;flight;156;A5;-
-D;E;20;flight;100;H8;-
-D;G;20;flight;90;R98;-
-D;R;50;flight;102;F2;-
-
-E;F;20;flight;16;S6;-
-F;G;20;flight;60;J84;-
-G;R;30;flight;80;F6;-
-# R;W;34;;;
-G;E;66;flight;100;-;-
