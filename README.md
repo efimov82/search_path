@@ -26,3 +26,7 @@ Total cost: 650$
 Time in road: 164 min 
 ----------------------------------
 ```
+
+Run tests
+
+php ./tests/testSearchPath.php
