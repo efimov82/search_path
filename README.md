@@ -12,7 +12,7 @@ Usage:
 php ./index.php 'New York JFK' 'Stockholm'
 ```
 
-Where: first param - start point of journey
+Where: first param - start point of journey, 
 second param - end point of journey
 
 Result:
