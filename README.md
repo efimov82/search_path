@@ -2,11 +2,17 @@ Testing project to search journey path from start point to end point
 Description task: Search Shortest path in an unweighted oriented graph
 
 File with data: ./listCards.txt
-Format file: 'from;to;time;transport;cost;seat;info'
+Format file: 
+```
+'from;to;time;transport;cost;seat;info'
+```
 
-Usage: php ./index.php 'New York JFK' 'Stockholm'
+Usage: 
+```
+php ./index.php 'New York JFK' 'Stockholm'
+```
 
-where first param - start point of journey
+Where: first param - start point of journey
 second param - end point of journey
 
 Result:
@@ -28,5 +34,6 @@ Time in road: 164 min
 ```
 
 Run tests
-
+```
 php ./tests/testSearchPath.php
+```
