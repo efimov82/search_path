@@ -1,6 +1,6 @@
 Testing project to search journey path from start point to end point.
 
-Description task: Search Shortest path in an unweighted oriented graph
+Description task: Search Shortest path in an unweighted oriented graph (details in ./task_description.txt)
 
 File with data: ./listCards.txt. 
 Format: 
